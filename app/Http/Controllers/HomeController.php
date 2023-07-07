@@ -17,33 +17,14 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function checkUserType(){
-        if(!Auth::user()){
-            return redirect('');
-
-        }
-        if(Auth::user()->userType==='ADM'){
-            return redirect('admin.thongke');
-            
-        }
-        if(Auth::user()->userType==='STD'){
-            return redirect('welcome');
-            
-        }
-        if(Auth::user()->userType==='TEA'){
-            return redirect('welcome');
-            
-        }
+    public function checkUserType(Request $request){
+   
 
     }
-    public function index()
-    {
-       
-       $users=$this->user->getList();
-     
-        return view('admin.thongke',compact('users'));
-    }
-
+   
+public function login(){
+    return view('auth.login');
+}
     /**
      * Show the form for creating a new resource.
      */

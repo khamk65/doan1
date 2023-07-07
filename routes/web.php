@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\DoExamController;
 use App\Http\Controllers\studentController;
 use App\Http\Controllers\examController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +20,9 @@ use App\Http\Controllers\examController;
 |
 */
 
-Route::get('/',[HomeController::class,'checkUserType']);
+Route::get('/',[HomeController::class,'login']);
+Route::post('/check/auth',[HomeController::class,'checkUserType'])->name('check.auth');
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
-Route::get('/admin/thongke',[HomeController::class,'index'])->name('admin.thongke');
 Route::get('/create/teacher',[TeacherController::class,'create'])->name('create.teacher');
 Route::get('/index/teacher',[TeacherController::class,'index'])->name('index.teacher');
 Route::post('/store/teacher',[TeacherController::class,'store'])->name('store.teacher');
@@ -49,11 +48,13 @@ Route::PATCH('/update/{id}/exam',[examController::class,'update'])->name('update
 Route::get('/delete/{id}/exam',[examController::class,'destroy'])->name('delete.exam');
 
 Route::get('/create/doexam',[DoExamController::class,'create'])->name('create.doexam');
-
+Route::post('/check/doexam',[DoExamController::class,'check'])->name('check.doexam');
 Route::get('/index/doexam',[DoExamController::class,'index'])->name('index.doexam');
 Route::post('/store/doexam',[DoExamController::class,'store'])->name('store.doexam');
 Route::get('/show/{id}/doexam',[DoExamController::class,'show'])->name('show.doexam');
-Route::POST('/check/doexam',[DoExamController::class,'check'])->name('check.doexam');
+Route::get('/do/{id}/doexame',[DoExamController::class,'do'])->name('do.doexam');
+Route::get('/list/doexame',[DoExamController::class,'list'])->name('list.doexam');
+Route::get('/create/document',[DocumentController::class,'create'])->name('create.document');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

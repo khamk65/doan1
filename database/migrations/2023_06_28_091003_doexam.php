@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('doexams', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('name');
-            $table->text('subject');
-            $table->text('time');
+            $table->string('name');
+            $table->string('subject');
+            $table->string('time');
             $table->text('description');
-            $table->text('idquestion');
+            $table->string('idquestion');
             $table->timestamps();
         });
     

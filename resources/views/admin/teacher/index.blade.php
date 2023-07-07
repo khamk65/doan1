@@ -11,7 +11,7 @@
     </tr>
   </thead>
   @php $i=1 @endphp
-    @foreach($teacher as $teacher)
+    @foreach($teachers as $teacher)
   <tbody class="table-group-divider">
     
     <tr>

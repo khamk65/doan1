@@ -6,88 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('build/assets/admin.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/public/admin/css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{asset('admin/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{{asset('admin/css/style.css')}}" rel="stylesheet">
 
 </head>
 <body>
-    <header>
-      <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand">Navbar</a>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+    
+      <div class="container-xxl position-relative bg-white d-flex p-0">
+        @include('layout.sidebar')
+    <div class="content">
+        @include('layout.header')
+      <div class="container-fluid pt-4 px-4">
+        @yield('Content')
         </div>
-      </nav>
-      </header>
       
-          </nav>
-          <div class="container-fluid">
-            
-            <div class="row">
-             
-              <div class="col-md-2">
-                
-                <div class="card mt-4">
-                  <div class="card-body">
-                    <h5 class="card-title">Quản lý chung</h5>
-  
-                    <div class="info-actions">
-                      <a href="{{route('admin.thongke')}}" class="btn btn-primary">Home</a><br>
-                     
-                    </div>
-                  </div>
-                </div>
-                <div class="card mt-4">
-                  <div class="card-body">
-                    <h5 class="card-title">Giáo Viên</h5>
-                    
-                    <div class="info-actions">
-                      <a href="{{route('create.teacher')}}" class="btn btn-primary">Thêm</a><br>
-                      <a href="{{route('index.teacher')}}" class="btn btn-primary">Quản lý</a><br>
-                      
-                    </div>
-                  </div>
-                </div>
-                <div class="card mt-4">
-                  <div class="card-body">
-                    <h5 class="card-title">Học sinh</h5>
-                   
-                    <div class="info-actions">
-                      <a href="{{route('create.student')}}" class="btn btn-primary">Thêm</a><br>
-                      <a href="{{route('index.student')}}" class="btn btn-primary">Quản lý</a><br>
-                    
-                    </div>
-                  </div>
-                </div>
-                <div class="card mt-4">
-                  <div class="card-body">
-                    <h5 class="card-title">Đề thi</h5>
-
-                    <div class="info-actions">
-                      <a href="{{route('create.exam')}}" class="btn btn-primary">Thêm</a><br>
-                      <a href="{{route('index.exam')}}" class="btn btn-primary">Quản lý</a><br>
-                    
-                    </div>
-                  </div>
-                </div>
-                <div class="card mt-4">
-                  <div class="card-body">
-                    <h5 class="card-title">Kỳ thi</h5>
-                  
-                    <div class="info-actions">
-                      <a href="{{route('create.doexam')}}" class="btn btn-primary">Thêm</a><br>
-                      <a href="#" class="btn btn-primary">Quản lý</a><br>
-                    
-                    </div>
-                  </div>
-                </div>
-              </div>
-          <main role="main" class="col-md-10 ml-sm-auto px-4">
-            @yield('Content');
-          </main>
-        </div>
-      </div>
+    </div>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('admin/lib/chart/chart.min.js')}}"></script>
+    <script src="{{asset('admin/lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset('admin/lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset('admin/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('admin/lib/tempusdominus/js/moment.min.js')}}"></script>
+    <script src="{{asset('admin/lib/tempusdominus/js/moment-timezone.min.js')}}"></script>
+    <script src="{{asset('admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+    <script src="{{asset('admin/js/main.js')}}"></script>
 </body>
 </html>

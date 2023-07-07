@@ -1,67 +1,66 @@
 @extends('layout.app')
 @section('Content')
-<form id="examForm" method="POST" action="{{ route('store.doexam') }}" enctype="multipart/form-data">
+<form method="POST" action="#" enctype="multipart/form-data">
     @csrf
     <div>
         <label>Tên của bài thi</label>
-        <textarea name="name" id="name" cols="15" rows="3" class="form-control"></textarea>
+        <div>{{$doExam->name}}</div>
     </div>
     <div>
         <label>Thời gian bài thi này</label>
-        <input type="number" name="time" id="" min="15" max="150">
+        <div>{{$doExam->time}}</div>
     </div>
     <div>
         <label>Mô tả cho bài thi này</label>
-        <textarea name="description" id="description" cols="15" rows="3" class="form-control"></textarea>
+        <div>{{$doExam->description}}</div>
     </div>
 
     <div id="questionContainer">
-        @foreach($exams as $exam)
         <div class="question">
-            <h3>Câu hỏi: {{ $exam->id }}</h3>
-            <p>{{ $exam->question }}</p>
-            <div class="options">
-                <label><input type="radio" name="answer[{{ $exam->id }}]" value="A"> A. {{ $exam->optionA }}</label><br>
-                <label><input type="radio" name="answer[{{ $exam->id }}]" value="B"> B. {{ $exam->optionB }}</label><br>
-                <label><input type="radio" name="answer[{{ $exam->id }}]" value="C"> C. {{ $exam->optionC }}</label><br>
-                <label><input type="radio" name="answer[{{ $exam->id }}]" value="D"> D. {{ $exam->optionD }}</label>
-            </div>
+            <h3>Câu hỏi: </h3>
+            <div class="options"></div>
         </div>
-        @endforeach
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" id="nextQuestionButton" class="btn btn-primary">Chuyển câu</button>
+    <button type="submit" id="submitButton" class="btn btn-primary" style="display: none;">Submit</button>
 </form>
 
 <script>
-    var questions = document.querySelectorAll('.question');
-    var currentIndex = 0;
+    const questions = {!! json_encode($exams) !!};
+    const questionContainer = document.getElementById('questionContainer');
+    const questionElement = questionContainer.querySelector('.question');
+    const questionTitleElement = questionElement.querySelector('h3');
+    const questionOptionsElement = questionElement.querySelector('.options');
+    const nextQuestionButton = document.getElementById('nextQuestionButton');
+    const submitButton = document.getElementById('submitButton');
+    let currentQuestionIndex = 0;
 
-    function showQuestion(index) {
-        if (index >= 0 && index < questions.length) {
-            questions[index].style.display = 'block';
+    function renderQuestion(index) {
+        const question = questions[index];
+        questionTitleElement.textContent = 'Câu hỏi: ' + question.question;
+
+        const options = question.question.split('--khảm--');
+        let optionsHtml = '';
+        options.forEach((option, optionIndex) => {
+            optionsHtml += '<label><input type="radio" name="question' + index + '" value="' + optionIndex + '"> ' + optionIndex + '. ' + option + '</label><br>';
+        });
+        questionOptionsElement.innerHTML = optionsHtml;
+
+        if (index === questions.length - 1) {
+            nextQuestionButton.style.display = 'none';
+            submitButton.style.display = 'block';
+        } else {
+            nextQuestionButton.style.display = 'block';
+            submitButton.style.display = 'none';
         }
     }
 
-    function hideQuestion(index) {
-        if (index >= 0 && index < questions.length) {
-            questions[index].style.display = 'none';
-        }
-    }
-
-    function nextQuestion() {
-        hideQuestion(currentIndex);
-        currentIndex++;
-        showQuestion(currentIndex);
-    }
-
-    showQuestion(currentIndex);
-
-    document.getElementById('examForm').addEventListener('submit', function (event) {
-        if (currentIndex < questions.length - 1) {
-            event.preventDefault();
-            nextQuestion();
-        }
+    nextQuestionButton.addEventListener('click', function() {
+        currentQuestionIndex++;
+        renderQuestion(currentQuestionIndex);
     });
+
+    renderQuestion(currentQuestionIndex);
 </script>
 @endsection

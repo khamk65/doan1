@@ -21,7 +21,8 @@ class DoExamController extends Controller
     
     public function index()
     {
-        //
+        $doExam=doexam::all();
+        return view('admin.Doexam.index', compact('doExam'));
     }
 
     /**
@@ -38,6 +39,7 @@ class DoExamController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validatedData = $request->validate([
             'name' => 'required|string',
             'subject' => 'required|string',
@@ -45,17 +47,17 @@ class DoExamController extends Controller
             'time'=>'required|string',
             'description' => 'required|string',    
         ]);
-    dd($validatedData );
+ 
         $idquestionString = implode('--khảm--', $validatedData['idquestion']);
-        $doExams = doexam::create([
+        $doExam = doexam::create([
             'name' => $validatedData['name'],
             'time' => $validatedData['time'],
             'idquestion' => $idquestionString,
             'subject'=>$validatedData['subject'],
             'description'=> $validatedData['description']
         ]);
-    
-        return redirect('/store/doexame');
+        
+        return redirect()->back()->with('success', 'Thêm bài thi thành công');
     }
 
     /**
@@ -63,9 +65,24 @@ class DoExamController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
-
+    public function do(String $id){
+     $doExam=doExam::find($id);
+    
+     $arrayIdQuestion=explode("--khảm--",$doExam->idquestion);
+     
+  $exams=exam::whereIn('id',$arrayIdQuestion)->get();
+        return view('admin.Doexam.do', compact('doExam','exams','arrayIdQuestion'));
+    
+    }
+    public function list(){
+        
+        $doExam=doexam::all();
+      
+        return view('admin.Doexam.list', compact('doExam'));
+            
+            }
     /**
      * Show the form for editing the specified resource.
      */
@@ -88,5 +105,8 @@ class DoExamController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function result(Request $request){
+
     }
 }

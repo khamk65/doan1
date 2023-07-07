@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DoExam extends Model
+class doexam extends Model
 {
     use HasFactory;
     protected $fillable=[
@@ -13,8 +13,7 @@ class DoExam extends Model
         'subject',
         'time',
         'description',
-        
         'idquestion',
-        
             ];
+
 }

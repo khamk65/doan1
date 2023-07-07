@@ -7,9 +7,10 @@
         <label>Tên của bài thi</label>
         <textarea name="name" id="name" cols="15" rows="3" class="form-control"></textarea>
     </div>
+    
     <div>
         <label>Thời gian bài thi này</label>
-    <input type="number" name="time" id="" min="15" max="150">
+    <input type="text" name="time" id="time" min="15" max="150">
 </div>
 <div>
     <label>Mô tả cho bài thi này</label>
@@ -32,6 +33,7 @@
     </thead>
     @php $i=1 @endphp
     @foreach($exams as $exam)
+    <input type="hidden" name="subject" value="{{$exam->subject}}" >
     <tbody>
       <tr>
         <th>
