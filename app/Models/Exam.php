@@ -11,8 +11,10 @@ class exam extends Model
     protected $fillable=[
 'type',
 'answer',
+'problem',
 'question',
-'subject'
+'subject',
+'right'
     ];
 
   

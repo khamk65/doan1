@@ -14,6 +14,7 @@ class doexam extends Model
         'time',
         'description',
         'idquestion',
+       
             ];
 
 }

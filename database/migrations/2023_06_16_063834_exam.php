@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('type', 191);
+            $table->string('right', 191);
+            $table->text('problem');
             $table->text('answer');
             $table->text('question');
             $table->text('subject');

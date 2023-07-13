@@ -22,6 +22,7 @@ use App\Http\Controllers\examController;
 
 Route::get('/',[HomeController::class,'login']);
 Route::post('/check/auth',[HomeController::class,'checkUserType'])->name('check.auth');
+Route::get('thongke/admin',[HomeController::class,'thongke'])->name('thongke.admin');
 
 Route::get('/create/teacher',[TeacherController::class,'create'])->name('create.teacher');
 Route::get('/index/teacher',[TeacherController::class,'index'])->name('index.teacher');
@@ -45,16 +46,24 @@ Route::post('/store/exam',[examController::class,'store'])->name('store.exam');
 Route::get('/show/{id}/exam',[examController::class,'show'])->name('show.exam');
 Route::get('/edit/{id}/exam',[examController::class,'edit'])->name('edit.exam');
 Route::PATCH('/update/{id}/exam',[examController::class,'update'])->name('update.exam');
-Route::get('/delete/{id}/exam',[examController::class,'destroy'])->name('delete.exam');
+Route::delete('/delete/{id}/exam',[examController::class,'destroy'])->name('delete.exam');
 
 Route::get('/create/doexam',[DoExamController::class,'create'])->name('create.doexam');
-Route::post('/check/doexam',[DoExamController::class,'check'])->name('check.doexam');
+Route::match(['get','post'],'/check/doexam',[DoExamController::class,'check'])->name('check.doexam');
+Route::post('/result/doexam',[DoExamController::class,'resultexam'])->name('result.doexam');
 Route::get('/index/doexam',[DoExamController::class,'index'])->name('index.doexam');
-Route::post('/store/doexam',[DoExamController::class,'store'])->name('store.doexam');
+Route::match(['get','post'],'/store/doexam',[DoExamController::class,'store'])->name('store.doexam');
 Route::get('/show/{id}/doexam',[DoExamController::class,'show'])->name('show.doexam');
 Route::get('/do/{id}/doexame',[DoExamController::class,'do'])->name('do.doexam');
 Route::get('/list/doexame',[DoExamController::class,'list'])->name('list.doexam');
+Route::get('/delete/{id}/doexam',[DoExamController::class,'destroy'])->name('delete.doexam');
+Route::get('/return/doexam',[DoExamController::class,'return'])->name('return.doexam');
+
 Route::get('/create/document',[DocumentController::class,'create'])->name('create.document');
+Route::post('/store/document',[DocumentController::class,'store'])->name('store.document');
+Route::get('/index/document',[DocumentController::class,'index'])->name('index.document');
+Route::get('/show/{id}/document',[DocumentController::class,'show'])->name('show.document');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

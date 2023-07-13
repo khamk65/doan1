@@ -1,63 +1,75 @@
 @extends('layout.app')
+
 @section('Content')
-<form method="POST" action="{{ route('store.doexam') }}" enctype="multipart/form-data">
-    @csrf
-    
-    <div>
-        <label>Tên của bài thi</label>
-        <textarea name="name" id="name" cols="15" rows="3" class="form-control"></textarea>
+<div class="container">
+
+    <h1>Tạo bài thi</h1>
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
     </div>
-    
-    <div>
-        <label>Thời gian bài thi này</label>
-    <input type="text" name="time" id="time" min="15" max="150">
-</div>
-<div>
-    <label>Mô tả cho bài thi này</label>
-    <textarea name="description" id="description" cols="15" rows="3" class="form-control"></textarea>
-</div>
+@endif
+    <form method="POST" action="{{ route('store.doexam') }}" enctype="multipart/form-data">
+        @csrf
+ 
+      <div class="form-group">
+            <label for="name">Tên của bài thi</label>
+            <textarea class="form-control" name="name" id="name" cols="30" rows="3" required></textarea>
+        </div>
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Chọn vào bài thi</th>
-        <th scope="col">id</th>
-        <th scope="col">Môn học</th>
-        <th scope="col">Câu Hỏi</th>
-        <th scope="col">A.</th>
-        <th scope="col">B.</th>
-        <th scope="col">C.</th>
-        <th scope="col">D.</th>
-        <th scope="col">Đáp án</th>
-      </tr>
-    </thead>
-    @php $i=1 @endphp
-    @foreach($exams as $exam)
-    <input type="hidden" name="subject" value="{{$exam->subject}}" >
-    <tbody>
-      <tr>
-        <th>
-            <input type="checkbox" name="idquestion[]" id="idquestion" value="{{$exam->id}}">
-        </form>
-        </th>
-        <th>{{$exam->id}}</th>
-        <th>{{$exam->subject}}</th>
+        <div class="form-group">
+            <label for="time">Thời gian bài thi (phút)</label>
+            <input type="number" class="form-control" name="time" id="time" min="15" max="150" required>
+        </div>
 
-        @php
-       
-        $questionString = $exam->question;
-$questions = explode('--khảm--', $questionString);
-@endphp
-@foreach($questions as $question)
-        <th>{{$question}}</th>
-        @endforeach      
-        <th>{{$exam->answer}}</th>
-        
-      </tr>
-    
-    </tbody>
-    @endforeach
-  </table>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+        <div class="form-group">
+            <label for="description">Mô tả cho bài thi</label>
+            <textarea class="form-control" name="description" id="description" cols="30" rows="3" required></textarea>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Chọn</th>
+                        <th>ID</th>
+                        <th>Môn học</th>
+                        <th>Câu hỏi</th>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>Đáp án</th>
+                        <th>Giải thích đáp án</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($exams as $exam)
+                    <input type="hidden" name="subject" value="{{$exam->subject}}"> 
+                    <tr>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="idquestion[]" value="{{$exam->id}}">
+                            </div>
+                        </td>
+                        <td>{{$exam->id}}</td>
+                        <td>{{$exam->subject}}</td>
+                        <td>{{$exam->problem}}</td>
+                        @php
+                        $choices = explode('--khảm--', $exam->question);
+                        @endphp
+                        @foreach($choices as $choice)
+                        <td>{{$choice}}</td>
+                        @endforeach
+                        <td>{{$exam->right}}</td>
+                        <td>{{$exam->answer}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 @endsection

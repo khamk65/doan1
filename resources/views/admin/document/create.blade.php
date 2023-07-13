@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('Content')
 <h1>Đẩy tài liệu lên</h1>
-<form action="" method="post">
+<form action="{{route('store.document')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div>
         <label>Bạn muốn thêm tài liệu cho môn học nào</label>
@@ -26,14 +26,15 @@
         <textarea name="description" id="description" cols="15" rows="3" class="form-control"></textarea>
     </div>
     <div>
-        <label>Loại câu hỏi</label><br>
+        <label>Loại tài liệu</label><br>
         <input type="radio" name="type" value="1" checked="checked" ><span>video</span><br>
         <input type="radio" name="type" value="0"> <span>ảnh</span><br>
         <input type="radio" name="type" value="2"> <span>tài liệu khác</span>
     </div>
     <div class="mb-3">
         <label>Tải file lên</label>
-        <input class="form-control" type="file" id="formFile" name="">
+        <input class="form-control" type="file" id="formFile" name="path" >
     </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 @endsection

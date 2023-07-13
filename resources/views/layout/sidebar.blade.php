@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="index.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            <a href="{{route('thongke.admin')}}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link nav-item nav-link" data-bs-toggle="dropdown">Giáo viên</a>
                 <div class="dropdown-menu bg-transparent border-0">
@@ -52,7 +52,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tài liệu tham khảo</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{route('create.document')}}" class="dropdown-item">Thêm tài liệu</a>
-                    <a href="#" class="dropdown-item">Quản lý tài liệu</a>
+                    <a href="{{route('index.document')}}" class="dropdown-item">Quản lý tài liệu</a>
                    
                 </div>
             </div>

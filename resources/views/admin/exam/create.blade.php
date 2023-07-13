@@ -2,6 +2,13 @@
 @section('Content')
 <h1>Tạo câu hỏi</h1>
 <form method="post" action="{{ route('store.exam') }}" enctype="multipart/form-data">
+
+
+     @if(session('success'))
+     <div class="alert alert-success">
+         {{ session('success') }}
+     </div>
+ @endif
     @csrf
     <div>
         <label>Loại câu hỏi</label><br>
@@ -25,7 +32,7 @@
     </div>
     <div>
         <label>Câu hỏi</label>
-        <textarea name="question[]" id="question" cols="15" rows="3" class="form-control"></textarea>
+        <textarea name="problem" id="problem" cols="15" rows="3" class="form-control"></textarea>
     </div>
     <div>
         <label>A</label>
@@ -44,7 +51,16 @@
         <textarea name="question[]" id="D" cols="10" rows="2" class="form-control"></textarea>
     </div>
     <div>
-        <label>Đáp án</label>
+        <div>
+            <label>Đáp án</label>
+            <select name="right" id="right">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+        </div>
+        <label>Giải thích đáp án</label>
         <textarea name="answer" id="" cols="30" rows="10" class="form-control"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

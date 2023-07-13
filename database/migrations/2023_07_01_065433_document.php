@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 191);
             $table->string('subject', 191);
             $table->string('type', 191);
-            
+            $table->string('path');
             $table->text('description');
             $table->timestamps();
         });

@@ -12,7 +12,8 @@ class document extends Model
         'name',
         'subject',
         'description',
-        'type'
+        'type',
+        'path'
         
             ];
 }

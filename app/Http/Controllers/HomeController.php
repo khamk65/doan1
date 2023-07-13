@@ -4,7 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Exam;
+use App\Models\DoExam;
+use App\Models\Result;
+use App\Models\document;
+use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
@@ -21,7 +28,17 @@ class HomeController extends Controller
    
 
     }
-   
+
+   public function thongke(){
+    $teacher= count(Teacher::all());
+    $student=count(Student::all());
+    $document=count(document::all());
+    $exam=count(exam::all());
+    $doexam=count(DoExam::all());
+    $result=count(Result::all());
+    return view('admin.thongke',compact('teacher','student','document','exam','doexam','result'));
+   }
+
 public function login(){
     return view('auth.login');
 }

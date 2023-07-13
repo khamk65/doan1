@@ -1,5 +1,6 @@
 @extends('layout.app')
 @section('Content')
+
 <table class="table">
     <thead>
       <tr>
@@ -11,6 +12,7 @@
         <th scope="col">C.</th>
         <th scope="col">D.</th>
         <th scope="col">Đáp án</th>
+        <th scope="col">Giải thích đáp án</th>
         <th scope="col">Edit</th>
       </tr>
     </thead>
@@ -20,7 +22,7 @@
       <tr>
         <th>{{$exams->id}}</th>
         <th>{{$exams->subject}}</th>
-
+        <th>{{$exams->problem}}</th>
         @php
        
         $questionString = $exams->question;
@@ -28,8 +30,10 @@ $questions = explode('--khảm--', $questionString);
 @endphp
 @foreach($questions as $question)
         <th>{{$question}}</th>
-        @endforeach      
+        @endforeach  
+        <th>{{$exams->right}}</th>    
         <th>{{$exams->answer}}</th>
+        
         <td>
             <a class="btn btn-primary" href="{{route('show.exam',['id'=>$exams->id])}}" role="button">show</a>
             <a class="btn btn-warning" href="{{route('edit.exam',['id'=>$exams->id])}}" role="button">edit</a>

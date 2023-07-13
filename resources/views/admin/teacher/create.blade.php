@@ -1,5 +1,10 @@
 @extends('layout.app')
 @section('Content')
+@if(session('success'))
+     <div class="alert alert-success">
+         {{ session('success') }}
+     </div>
+ @endif
 <div class="row g-4">
     <div class="col-sm-12 col-xl-12">
         <div class="bg-light rounded h-100 p-4">

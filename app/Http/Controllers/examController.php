@@ -33,6 +33,8 @@ class examController extends Controller
     {
         $validatedData = $request->validate([
             'type' => 'required|string',
+            'right' => 'required|string',
+            'problem' => 'required|string',
             'answer' => 'required|string',
             'question.*' => 'required|string',
             'subject'=>'required|string'
@@ -42,7 +44,9 @@ class examController extends Controller
         $questionString = implode('--khảm--', $validatedData['question']);
         $exams = exam::create([
             'type' => $validatedData['type'],
+            'problem' => $validatedData['problem'],
             'answer' => $validatedData['answer'],
+            'right' => $validatedData['right'],
             'question' => $questionString,
             'subject'=>$validatedData['subject']
         ]);
@@ -79,6 +83,8 @@ class examController extends Controller
     $validatedData = $request->validate([
         'type' => 'required|string',
         'answer' => 'required|string',
+        'problem' => 'required|string',
+        'right' => 'required|string',
         'question.*' => 'required|string',
         'subject'=>'required|string'
 
@@ -90,6 +96,8 @@ class examController extends Controller
     
     $exams->type = $validatedData['type'];
     $exams->answer = $validatedData['answer'];
+    $exams->problem = $validatedData['problem'];
+    $exams->right = $validatedData['right'];
     $exams->question = $questionString;
     $exams->subject=$validatedData['subject'];
     
@@ -103,8 +111,9 @@ class examController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(String $id)
-    {
+    {dd($id);
         $exams=exam::destroy($id);
+        
         return redirect()->back()->with('success','xóa câu hỏi thành công');
     }
 }
