@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->text('arraychoice');
             $table->text('idexam');
+            $table->string('class');
             $table->text('quantity');
             $table->timestamps();
         });

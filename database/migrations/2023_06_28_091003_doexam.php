@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('time');
             $table->text('description');
             $table->string('idquestion');
-          
+            $table->string('class');
             $table->timestamps();
         });
     

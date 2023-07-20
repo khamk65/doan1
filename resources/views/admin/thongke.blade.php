@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('admin.layout.app')
 @section('Content')
 <h1>Thống kê</h1>
 <div class="chart">

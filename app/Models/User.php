@@ -40,25 +40,13 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
+    // public function teacher()
+    // {
+    //     return $this->hasOne(Teacher::class);
+    // }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
-    public function  getList(){
-        return $this->all();
-    }
+    // public function student()
+    // {
+    //     return $this->hasOne(Student::class);
+    // }
 }

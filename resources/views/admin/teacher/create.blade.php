@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('admin.layout.app')
 @section('Content')
 @if(session('success'))
      <div class="alert alert-success">

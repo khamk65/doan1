@@ -11,6 +11,7 @@ class Result extends Model
     protected $fillable=[
         'arraychoice',
         'idexam',
-        'quantity'
+        'quantity',
+        'class'
             ];
 }

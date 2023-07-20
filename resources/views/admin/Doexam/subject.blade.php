@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('admin.layout.app')
 
 @section('Content')
 <div class="container">
@@ -17,9 +17,20 @@
             <textarea class="form-control" name="name" id="name" cols="30" rows="3" required></textarea>
         </div>
 
+        <div id="existing-class-list" class="form-group">
+            <label class="form-label">Chọn lớp thi</label>
+            <select class="form-select" name="class">
+                <option value="">Chọn lớp</option>
+                <!-- Hiển thị danh sách các lớp đã tồn tại -->
+                @foreach($student as $students)
+                    <option value="{{ $students->class }}">{{ $students->class }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="form-group">
             <label for="time">Thời gian bài thi (phút)</label>
-            <input type="number" class="form-control" name="time" id="time" min="15" max="150" required>
+            <input type="number" class="form-control" name="time" id="time" min="1" max="150" required>
         </div>
 
         <div class="form-group">

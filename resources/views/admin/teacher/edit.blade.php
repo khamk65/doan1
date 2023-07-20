@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('admin.layout.app')
 @section('Content')
 {{-- <form method="POST" action="{{ route('update.teacher',['id'=>$teacher->id])}}" enctype="multipart/form-data">
     @csrf

@@ -1,9 +1,10 @@
-@extends('layout.app')
+@extends('admin.layout.app')
 @section('Content')
 <form method="POST" action="{{route('result.doexam')}}" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="idexam" value="{{$doExam->id}}">
-    
+    <input type="hidden" name="class" value="{{$doExam->class}}">
+
     <div>
         <label>Tên của bài thi</label>
         <h2>{{$doExam->name}}</h2>

@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('admin.layout.app')
 @section('Content')
 <h1>Quản lý kỳ thi</h1><br>
 @if(session('success'))
@@ -14,6 +14,7 @@
         <th scope="col">name</th>
         <th scope="col">time</th>
         <th scope="col">description</th>
+        <th scope="col">class</th>
         <th scope="col">Status</th>
         <th scope="col">Edit</th>
       </tr>
@@ -41,7 +42,8 @@
        
       
 
-        <th>{{$doExams->description}}</th>  
+        <th>{{$doExams->description}}</th> 
+        <th>{{$doExams->class}}</th> 
         @if ($isCompleted)
        <th>{{$results->quantity}}</th>
     @else
