@@ -15,6 +15,20 @@
                     <label  class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" name="name" required>
                 </div>
+                <div>
+                    <label>Chuyên môn</label>
+                    <select name="subject" id="subject">
+                        <option value="toan">Toán</option>
+                        <option value="ly"> Lý</option>
+                        <option value="hoa">Hóa</option>
+                        <option value="van">Văn</option>
+                        <option value="anh">Anh</option>
+                        <option value="sinh">Sinh</option>
+                        <option value="su">Sử</option>
+                        <option value="dia">Địa</option>
+                        <option value="gdcd">GDCD</option>
+                    </select>
+                </div>
                 <div class="mb-3">
                     <label  class="form-label">Rank</label>
                     <input type="text" class="form-control" id="rank" name="rank" required>

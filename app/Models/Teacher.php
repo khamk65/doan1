@@ -82,9 +82,15 @@ class Teacher extends Model implements Authenticatable
         return $this->all();
     }
 
-    public static function createTeacher($data)
+    public static function createTeacher($validatedData,$hashedPassword)
     {
-        return self::create($data);
+        return self::create([
+            'name' => $validatedData['name'],
+            'subject' => $validatedData['subject'],
+    'rank'=> $validatedData['rank'],
+    'email' => $validatedData['email'],
+    'password' =>$hashedPassword
+           ] );
     }
 
     public static function updateTeacher($id, $data)

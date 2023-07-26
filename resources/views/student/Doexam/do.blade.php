@@ -2,6 +2,8 @@
 @section('Content')
 <form method="POST" action="{{route('student.result.doexam')}}" enctype="multipart/form-data">
     @csrf
+    <input type="hidden" name="id_user" value="{{$iduser}}">
+    <input type="hidden" name="class" value="{{$classuser}}">
     <input type="hidden" name="idexam" value="{{$doExam->id}}">
     
     <div>

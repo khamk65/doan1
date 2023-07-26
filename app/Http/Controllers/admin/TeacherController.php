@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
@@ -24,12 +24,14 @@ class TeacherController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string',
+            'subject'=>'required|string',
             'rank' => 'required|string',
             'email' => 'required|email|unique:teachers,email',
             'password' => 'required|string',
         ]);
+        $hashedPassword = Hash::make($request->input('password'));
 
-        $teacher = $this->teacher->createteacher($validatedData);
+        $teacher = $this->teacher->createteacher($validatedData,$hashedPassword);
 
         return redirect()->back()->with('success', 'Thêm giáo viên thành công');
     }

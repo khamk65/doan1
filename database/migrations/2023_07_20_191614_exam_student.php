@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('results', function (Blueprint $table) {
+        Schema::create('exam_students', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('arraychoice');
-            $table->text('idexam');
+            $table->text('id_doexam');
             $table->string('class');
-            $table->text('quantity');
             $table->string('id_user');
             $table->timestamps();
         });
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('results');
+        Schema::dropIfExists('exam_students');
     }
 };

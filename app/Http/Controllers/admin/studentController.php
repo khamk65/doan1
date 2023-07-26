@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+use Illuminate\Support\Facades\Hash;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class studentController extends Controller
     return view('admin.student.create',compact('student'));
   }
    public function store(Request $request){
- 
+
     $validatedData = $request->validate([
       'name' => 'required|string',
       'class'=>'required|string',
@@ -22,9 +23,15 @@ class studentController extends Controller
       'email' => 'required|email|unique:students,email',
       'password' => 'required|string',
   ]);
-  
+  $hashedPassword = Hash::make($request->input('password'));
+
   // Tạo một giáo viên mới dựa trên dữ liệu đã xác thực
-  $student = student::create($validatedData);
+  $student = student::create([
+    'name' => $validatedData['name'],
+    'class'=> $validatedData['class'],
+    'email' => $validatedData['email'],
+    'password' =>$hashedPassword
+  ]);
   
   // Trả về thông báo hoặc chuyển hướng đến trang khác
   return redirect()->back()->with('success', 'Thêm giáo viên thành công');

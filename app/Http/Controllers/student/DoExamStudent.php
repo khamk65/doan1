@@ -34,17 +34,21 @@ class DoExamStudent extends Controller
      */
    
     public function do(String $id){
+        
      $doExam=doExam::find($id);
     
      $arrayIdQuestion=explode("--khảm--",$doExam->idquestion);
+     $classuser=session()->get('classuser');
+     $iduser=session()->get('iduser');
   $exams=exam::whereIn('id',$arrayIdQuestion)->get();
      
-        return view('student.Doexam.do', compact('doExam','exams','arrayIdQuestion'));
+        return view('student.Doexam.do', compact('doExam','exams','arrayIdQuestion','classuser','iduser'));
        
     }
     public function resultexam(Request $request){
-  dd($request);
+
         $validatedData = $request->validate([
+            'id_user'=>'required|string',
             'idexam' => 'required|string',
             'class' => 'required|string',
             'arraychoice' => 'required|array',
@@ -79,6 +83,7 @@ $d++;
         $idarraychoice = implode('--khảm--', $arrayvalue);
         
         $result = Result::create([
+            'id_user' => $validatedData['id_user'],
             'idexam' => $validatedData['idexam'],
             'class' => $validatedData['class'],
             'arraychoice' => $idarraychoice,
@@ -90,8 +95,9 @@ $d++;
             return view('student.Doexam.return',compact('quantity'))->with('success', 'lưu kết quả bài thi thành công');
     }
     public function list(){
-        
-        $doExam=doexam::all();
+        $classuser=session()->get('classuser');
+       
+        $doExam = doexam::where('class','=', $classuser)->get();
         $result=Result::all();
         
         return view('student.Doexam.list', compact('doExam','result',));

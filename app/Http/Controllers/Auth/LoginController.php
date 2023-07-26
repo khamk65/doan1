@@ -22,9 +22,8 @@ class LoginController extends Controller
         'password' => ['required'],
     ]);
     
-    // dd($credentials);
-    $teacher = auth::guard('student')->attempt($credentials);
-dd($teacher);
+   
+    
     // Kiểm tra xác thực cho người dùng thuộc nhóm "teachers"
     if (Auth::guard('teacher')->attempt($credentials)) {
         // Xử lý khi đăng nhập thành công cho nhóm giáo viên
@@ -33,9 +32,16 @@ dd($teacher);
 
     // Kiểm tra xác thực cho người dùng thuộc nhóm "students"
     if (Auth::guard('student')->attempt($credentials)) {
-      
+        $user = Auth::guard('student')->user();
+    
+      $iduser=$user->id;
+      $classuser=$user->class;
+       
+      session()->put('iduser', $iduser);
+session()->put('classuser', $classuser);
+
         // Xử lý khi đăng nhập thành công cho nhóm sinh viên
-        return view('student.document.create');
+        return redirect(route('student.index.document'));
     }
 
     // Kiểm tra xác thực cho người dùng thuộc nhóm "users"

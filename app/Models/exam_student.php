@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Result extends Model
+class exam_student extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'arraychoice',
-        'idexam',
-        'quantity',
+        
+        'id_doexam',
         'class',
         'id_user'
             ];
