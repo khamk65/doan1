@@ -11,10 +11,10 @@ Route::get('thongke/student',[StudentController::class,'thongke'])->name('thongk
 // Route::get('/list/document/student',[DocumentStudent::class,'index'])->name('student.index.document');
 // Route::get('/show/{id}/document/student',[DocumentStudent::class,'show'])->name('student.show.document');
 
-Route::get('/api/list/document/student', [DocumentStudent::class, 'apiIndex'])->name('api.student.index.document');
+Route::get('/api/list/document/student', [DocumentStudent::class, 'index'])->name('api.student.index.document');
     
 // Thay đổi route show để trả về thông tin tài liệu dưới dạng API
-Route::get('/api/show/{id}/document/student', [DocumentStudent::class, 'apiShow'])->name('api.student.show.document');
+Route::get('/api/show/{id}/document/student', [DocumentStudent::class, 'show'])->name('api.student.show.document');
 
 Route::get('/do/{id}/doexame/student',[DoExamStudent::class,'do'])->name('student.do.doexam');
 Route::post('/result/doexam/student',[DoExamStudent::class,'resultexam'])->name('student.result.doexam');

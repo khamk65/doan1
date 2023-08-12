@@ -41,7 +41,7 @@ class LoginController extends Controller
 session()->put('classuser', $classuser);
 
         // Xử lý khi đăng nhập thành công cho nhóm sinh viên
-        return redirect(route('student.index.document'));
+        return redirect(route('api.student.index.document'));
     }
 
     // Kiểm tra xác thực cho người dùng thuộc nhóm "users"
