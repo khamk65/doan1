@@ -41,7 +41,8 @@
 <script>
     var currentQuestion = 0;
     var totalQuestions = {{$exams->count()}};
-    var timeRemaining = {{$doExam->time}}*60; // Thời gian còn lại (giây)
+    var timeRemaining = {{$doExam->time}} * 60; // Thời gian còn lại (giây)
+    var startTime = new Date().getTime() / 1000; // Thời gian bắt đầu (giây)
 
     function previousQuestion() {
         if (currentQuestion > 0) {
@@ -71,7 +72,10 @@
 
     function startTimer() {
         var timerInterval = setInterval(function() {
-            timeRemaining--;
+            var currentTime = new Date().getTime() / 1000; // Thời gian hiện tại (giây)
+            var elapsedSeconds = currentTime - startTime; // Thời gian đã trôi qua (giây)
+            timeRemaining = Math.max(timeRemaining - elapsedSeconds, 0); // Cập nhật thời gian còn lại
+            startTime = currentTime; // Cập nhật thời gian bắt đầu
             document.getElementById('timer').innerHTML = formatTime(timeRemaining);
 
             if (timeRemaining <= 0) {
@@ -97,5 +101,6 @@
         startTimer();
     };
 </script>
+
 
 @endsection

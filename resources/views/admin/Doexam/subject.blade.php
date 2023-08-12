@@ -22,8 +22,8 @@
             <select class="form-select" name="class">
                 <option value="">Chọn lớp</option>
                 <!-- Hiển thị danh sách các lớp đã tồn tại -->
-                @foreach($student as $students)
-                    <option value="{{ $students->class }}">{{ $students->class }}</option>
+                @foreach($class as $class)
+                    <option value="{{ $class->class }}">{{ $class->class }}</option>
                 @endforeach
             </select>
         </div>
@@ -32,7 +32,10 @@
             <label for="time">Thời gian bài thi (phút)</label>
             <input type="number" class="form-control" name="time" id="time" min="1" max="150" required>
         </div>
-
+        <div class="form-group">
+            <label for="time">Thời gian đóng bài thi</label>
+            <input type="time" class="form-control" name="time" id="time" min="1" max="150" required>
+        </div>
         <div class="form-group">
             <label for="description">Mô tả cho bài thi</label>
             <textarea class="form-control" name="description" id="description" cols="30" rows="3" required></textarea>

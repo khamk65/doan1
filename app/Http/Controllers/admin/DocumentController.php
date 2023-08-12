@@ -91,6 +91,6 @@ class DocumentController extends Controller
      */
     public function destroy(string $id)
     {
-        
+        $document=document::destroy($id);
     }
 }

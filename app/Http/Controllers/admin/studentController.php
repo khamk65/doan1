@@ -11,8 +11,9 @@ class studentController extends Controller
 {
  
   public function create(){
-    $student=student::all();
-    return view('admin.student.create',compact('student'));
+    $class=student::distinct()->pluck('class');
+    
+    return view('admin.student.create',compact('class'));
   }
    public function store(Request $request){
 

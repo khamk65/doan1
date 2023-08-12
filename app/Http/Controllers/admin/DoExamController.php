@@ -20,7 +20,9 @@ class DoExamController extends Controller
         $subject = $request->input('subject');
         $exams = exam::where('subject', '=', $subject)->get();
         $student=student::all();
-    return view('admin.Doexam.subject', compact('exams','student'));
+        $class= student::select('class')->distinct()->get();
+      
+    return view('admin.Doexam.subject', compact('exams','student','class'));
     }
     
     public function index()
@@ -48,16 +50,18 @@ class DoExamController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string',
             'class'=>'required|string',
+            'endtime'=>'required|date_format:Y-m-d H:i:s',
             'subject' => 'required|string',
             'idquestion.*' => 'required|string',
             'time'=>'required|string',
             'description' => 'required|string',    
         ]);
- 
+ dd($validatedData['endtime']);
         $idquestionString = implode('--khảm--', $validatedData['idquestion']);
         $doExam = doexam::create([
             'name' => $validatedData['name'],
             'class' => $validatedData['class'],
+            'endtime'=>$validatedData['endtime'],
             'time' => $validatedData['time'],
             'idquestion' => $idquestionString,
             'subject'=>$validatedData['subject'],
@@ -66,7 +70,9 @@ class DoExamController extends Controller
         
         return back()->with('success', 'Lưu dữ liệu thành công');
     }
+public function doexamstudent(){
 
+}
     /**
      * Display the specified resource.
      */

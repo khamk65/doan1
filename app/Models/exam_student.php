@@ -12,6 +12,8 @@ class exam_student extends Model
         
         'id_doexam',
         'class',
-        'id_user'
+        'id_student',
+        'end_time'
+
             ];
 }

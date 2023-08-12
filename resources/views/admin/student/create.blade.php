@@ -33,8 +33,8 @@
                     <select class="form-select" name="existing_class">
                         <option value="">Chọn lớp</option>
                         <!-- Hiển thị danh sách các lớp đã tồn tại -->
-                        @foreach($student as $students)
-                            <option value="{{ $students->class }}">{{ $students->class }}</option>
+                        @foreach($class as $class)
+                            <option value="{{ $class }}">{{$class }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -12,6 +12,7 @@ class doexam extends Model
         'name',
         'subject',
         'time',
+        'endtime',
         'description',
         'idquestion',
        'class'

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('subject');
             $table->string('time');
+            $table->timestamps('endtime');
             $table->text('description');
             $table->string('idquestion');
             $table->string('class');
